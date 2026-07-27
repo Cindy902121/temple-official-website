@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/temple-official-website/" />
+    <title>宮廟官網｜信仰，就在身邊</title>
+    <meta name="description" content="線上收驚、快速預約與到廟服務，讓信仰的陪伴更即時。" />
+    <style>
+      :root { --ink:#193b35; --coral:#f5683c; --cream:#fff9ef; --peach:#fff0df; --line:#efdcca; }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body { margin:0; color:var(--ink); background:var(--cream); font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif; }
+      .hero { min-height:720px; display:flex; align-items:center; padding:90px max(28px,calc((100% - 1120px)/2)); background:linear-gradient(90deg,#fff9efff 4%,#fff9efdf 43%,#fff9ef1a 78%),url("public/temple-hero-v2.png") center/cover; }
+      .hero-inner { max-width:600px; }
+      .eyebrow { color:var(--coral); font-size:12px; letter-spacing:.16em; font-weight:800; }
+      h1,h2,h3,p { margin-top:0; }
+      h1 { margin:17px 0 22px; font-size:clamp(46px,7vw,78px); line-height:1.18; letter-spacing:.02em; }
+      h2 { margin-bottom:18px; font-size:clamp(32px,4.2vw,54px); line-height:1.3; }
+      .hero p,.lead { color:#51655e; font-size:18px; line-height:1.9; }
+      .tagline { margin-top:34px; color:var(--coral); font-weight:800; letter-spacing:.03em; }
+      .button { display:inline-flex; align-items:center; justify-content:center; min-height:56px; margin-top:25px; padding:14px 30px; border-radius:999px; background:var(--coral); color:#fff; font-weight:800; text-decoration:none; transition:transform .25s,box-shadow .25s,background .25s; }
+      .button:hover { transform:translateY(-4px); box-shadow:0 15px 25px #af4a2b39; background:#e9562c; }
+      section { padding:96px max(28px,calc((100% - 1120px)/2)); }
+      .intro { text-align:center; background:#fffdfa; }
+      .intro .lead { max-width:650px; margin:0 auto; }
+      .benefits { background:var(--peach); }
+      .cards,.quotes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:42px; }
+      .card,.quote { border:1px solid var(--line); border-radius:24px; background:#fffdfa; transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease; }
+      .card { min-height:360px; padding:30px; overflow:hidden; }
+      .card:hover,.quote:hover { transform:translateY(-9px); border-color:#f59b78; box-shadow:0 18px 36px #784b2b22; }
+      .icon { width:108px; height:108px; border-radius:50%; background-image:url("public/service-icons-v2.png"); background-repeat:no-repeat; background-size:300% 100%; transition:transform .3s ease,filter .3s ease; }
+      .card:hover .icon { transform:scale(1.08) rotate(-4deg); filter:drop-shadow(0 9px 9px #f56b3d2c); }
+      .icon.one { background-position:0 0; } .icon.two { background-position:50% 0; } .icon.three { background-position:100% 0; }
+      .number { margin:26px 0 8px; color:var(--coral); font-size:12px; font-weight:900; letter-spacing:.13em; }
+      .card h3 { margin-bottom:12px; font-size:25px; }
+      .card p,.quote { color:#64736d; line-height:1.85; }
+      .voices { text-align:center; background:#fffdfa; }
+      .quote { padding:27px; text-align:left; }
+      .quote b { display:block; margin-top:15px; color:var(--ink); }
+      .cta { text-align:center; background:var(--ink); color:#fff; }
+      .cta p { color:#dce7e1; line-height:1.9; }
+      .cta .button { background:#fff; color:var(--ink); }
+      .cta .button:hover { background:#fff5eb; }
+      @media (max-width:700px) { .hero { min-height:660px; padding:70px 24px; background-position:62% center; } section { padding:72px 24px; } .cards,.quotes { grid-template-columns:1fr; margin-top:32px; } .card { min-height:0; } .hero p,.lead { font-size:16px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="eyebrow">TEMPLE ONLINE SERVICE</div>
+          <h1>信仰，就在<br />身邊陪伴你</h1>
+          <p>從線上收驚、服務預約到到廟辦理，<br />讓每一份心意，都能被安心接住。</p>
+          <div class="tagline">Faith Near, Heart at Ease.</div>
+          <a class="button" href="#services">立即開始預約</a>
+        </div>
+      </section>
+
+      <section class="intro">
+        <div class="eyebrow">WHEN YOU NEED A LITTLE PEACE</div>
+        <h2>有些心事，<br />不必一個人承擔。</h2>
+        <p class="lead">需要收驚、祈福、看風水或安排普渡時，不再四處詢問；<br />你可以在這裡，找到合適的宮廟服務與安心的指引。</p>
+      </section>
+
+      <section id="services" class="benefits">
+        <div class="eyebrow">ONE PLACE, THREE KINDS OF PEACE</div>
+        <h2>把信仰的事，<br />好好安排。</h2>
+        <div class="cards">
+          <article class="card"><div class="icon one" aria-hidden="true"></div><div class="number">01</div><h3>線上收驚</h3><p>在安心的引導下完成祈福儀式，讓心慢慢安定。</p></article>
+          <article class="card"><div class="icon two" aria-hidden="true"></div><div class="number">02</div><h3>快速預約</h3><p>選擇服務與時段，幾分鐘就完成預約，方便到廟辦理。</p></article>
+          <article class="card"><div class="icon three" aria-hidden="true"></div><div class="number">03</div><h3>即刻心靈寄託</h3><p>需要支持的時候，隨時找到適合的宮廟服務與陪伴。</p></article>
+        </div>
+      </section>
+
+      <section class="voices">
+        <div class="eyebrow">FROM THE COMMUNITY</div>
+        <h2>讓安心，成為<br />每一天的陪伴。</h2>
+        <div class="quotes">
+          <blockquote class="quote">「第一次使用線上收驚，流程很清楚，心裡也踏實很多。」<b>— 白小姐｜台北</b></blockquote>
+          <blockquote class="quote">「幫家人預約到廟服務很方便，不用一直打電話確認。」<b>— 陳先生｜新竹</b></blockquote>
+          <blockquote class="quote">「需要協助時很快就找到方向，感覺有人願意傾聽。」<b>— 林小姐｜台中</b></blockquote>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="eyebrow">START WITH A PEACEFUL HEART</div>
+        <h2>從現在開始，<br />讓心有個安放的地方。</h2>
+        <p>線上服務與到廟預約，都能在這裡開始。</p>
+        <a class="button" href="#services">探索服務</a>
+      </section>
+    </main>
+  </body>
+</html>
