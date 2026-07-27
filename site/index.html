@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff9ef" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <title>宮廟官網｜信仰，就在身邊</title>
     <meta name="description" content="線上收驚、快速預約與到廟服務，讓信仰的陪伴更即時。" />
     <style>
@@ -10,9 +12,15 @@
       * { box-sizing:border-box; }
       html { scroll-behavior:smooth; }
       body { margin:0; color:var(--ink); background:var(--cream); font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif; }
+      .skip-link { position:fixed; top:12px; left:12px; z-index:20; transform:translateY(-160%); padding:10px 14px; border-radius:10px; background:var(--ink); color:#fff; font-weight:800; text-decoration:none; transition:transform .2s; }
+      .skip-link:focus-visible { transform:translateY(0); }
       .hero { min-height:720px; position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; padding:90px max(28px,calc((100% - 1120px)/2)); background:linear-gradient(90deg,#fff9efff 4%,#fff9efdf 43%,#fff9ef1a 78%),url("public/temple-hero-v2.png") center/cover; }
       .hero-inner { position:relative; z-index:1; max-width:600px; }
       #temple-aura { position:absolute; inset:0; z-index:0; width:100%; height:100%; pointer-events:none; mix-blend-mode:screen; opacity:.72; }
+      .service-choice { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+      .choice-button { display:inline-flex; align-items:center; justify-content:center; min-height:54px; padding:14px 22px; border:1px solid var(--coral); border-radius:999px; background:var(--coral); color:#fff; font-weight:800; text-decoration:none; transition:transform .25s,box-shadow .25s,background .25s; touch-action:manipulation; }
+      .choice-button:hover { transform:translateY(-3px); box-shadow:0 12px 22px #af4a2b31; background:#e9562c; }
+      .choice-button.secondary { background:#fff9efbf; color:var(--ink); border-color:#c88767; backdrop-filter:blur(5px); }
       .eyebrow { color:var(--coral); font-size:12px; letter-spacing:.16em; font-weight:800; }
       h1,h2,h3,p { margin-top:0; }
       h1 { margin:17px 0 22px; font-size:clamp(46px,7vw,78px); line-height:1.18; letter-spacing:.02em; }
@@ -21,7 +29,11 @@
       .tagline { margin-top:34px; color:var(--coral); font-weight:800; letter-spacing:.03em; }
       .button { display:inline-flex; align-items:center; justify-content:center; min-height:56px; margin-top:25px; padding:14px 30px; border-radius:999px; background:var(--coral); color:#fff; font-weight:800; text-decoration:none; transition:transform .25s,box-shadow .25s,background .25s; }
       .button:hover { transform:translateY(-4px); box-shadow:0 15px 25px #af4a2b39; background:#e9562c; }
+      a:focus-visible { outline:3px solid #193b35; outline-offset:4px; }
       section { padding:96px max(28px,calc((100% - 1120px)/2)); }
+      .trust-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; padding:0 max(28px,calc((100% - 1120px)/2)); background:var(--line); }
+      .trust-item { min-height:94px; display:flex; align-items:center; justify-content:center; padding:18px 24px; background:#fffdfa; text-align:center; color:#51655e; font-size:14px; line-height:1.55; }
+      .trust-item b { display:block; color:var(--ink); font-size:16px; }
       .intro { text-align:center; background:#fffdfa; }
       .intro .lead { max-width:650px; margin:0 auto; }
       .benefits { background:var(--peach); }
@@ -35,6 +47,10 @@
       .number { margin:26px 0 8px; color:var(--coral); font-size:12px; font-weight:900; letter-spacing:.13em; }
       .card h3 { margin-bottom:12px; font-size:25px; }
       .card p,.quote { color:#64736d; line-height:1.85; }
+      .service-mode { display:inline-flex; margin:18px 0 10px; padding:6px 10px; border-radius:999px; background:#fff0df; color:#b94d2e; font-size:12px; font-weight:800; }
+      .service-link { display:inline-flex; align-items:center; margin-top:22px; color:var(--ink); font-weight:800; text-decoration:none; }
+      .service-link::after { content:"→"; margin-left:8px; transition:transform .2s; }
+      .service-link:hover::after { transform:translateX(4px); }
       .voices { text-align:center; background:#fffdfa; }
       .quote { padding:27px; text-align:left; }
       .quote b { display:block; margin-top:15px; color:var(--ink); }
@@ -42,11 +58,13 @@
       .cta p { color:#dce7e1; line-height:1.9; }
       .cta .button { background:#fff; color:var(--ink); }
       .cta .button:hover { background:#fff5eb; }
-      @media (max-width:700px) { .hero { min-height:660px; padding:70px 24px; background-position:62% center; } #temple-aura { opacity:.42; } section { padding:72px 24px; } .cards,.quotes { grid-template-columns:1fr; margin-top:32px; } .card { min-height:0; } .hero p,.lead { font-size:16px; } }
+      .mobile-booking { display:none; }
+      @media (max-width:700px) { .hero { min-height:660px; padding:70px 24px; background-position:62% center; } #temple-aura { opacity:.42; } section { padding:72px 24px; } .cards,.quotes { grid-template-columns:1fr; margin-top:32px; } .trust-strip { grid-template-columns:1fr; gap:1px; padding:0 24px; } .trust-item { min-height:76px; } .card { min-height:0; } .hero p,.lead { font-size:16px; } .service-choice { display:grid; grid-template-columns:1fr; } .choice-button { width:100%; } .mobile-booking { display:flex; position:fixed; right:16px; bottom:max(16px,env(safe-area-inset-bottom)); left:16px; z-index:10; justify-content:center; min-height:56px; padding:16px 24px; border-radius:999px; background:var(--coral); color:#fff; box-shadow:0 14px 30px #4a291f55; font-weight:900; text-decoration:none; touch-action:manipulation; } body { padding-bottom:88px; } }
     </style>
   </head>
   <body>
-    <main>
+    <a class="skip-link" href="#main-content">跳至主要內容</a>
+    <main id="main-content">
       <section class="hero">
         <canvas id="temple-aura" aria-hidden="true"></canvas>
         <div class="hero-inner">
@@ -54,9 +72,19 @@
           <h1>信仰，就在<br />身邊陪伴你</h1>
           <p>從線上收驚、服務預約到到廟辦理，<br />讓每一份心意，都能被安心接住。</p>
           <div class="tagline">Faith Near, Heart at Ease.</div>
+          <div class="service-choice" aria-label="選擇服務方式">
+            <a class="choice-button" href="#services">線上收驚</a>
+            <a class="choice-button secondary" href="#services">到廟預約</a>
+          </div>
           <a class="button" href="#services">立即開始預約</a>
         </div>
       </section>
+
+      <div class="trust-strip" aria-label="服務資訊">
+        <div class="trust-item"><span><b>線上 & 到廟皆可</b>依需求選擇最安心的方式</span></div>
+        <div class="trust-item"><span><b>流程清楚</b>送出需求後取得下一步指引</span></div>
+        <div class="trust-item"><span><b>由廟方確認</b>重要服務可先確認時段與安排</span></div>
+      </div>
 
       <section class="intro">
         <div class="eyebrow">WHEN YOU NEED A LITTLE PEACE</div>
@@ -91,12 +119,32 @@
         <a class="button" href="#services">探索服務</a>
       </section>
     </main>
+    <a class="mobile-booking" href="#services">開始選擇服務</a>
     <script type="module">
       import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js";
 
       const canvas = document.querySelector("#temple-aura");
       const hero = document.querySelector(".hero");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const serviceDetails = [
+        { mode: "線上可辦理", action: "了解線上收驚" },
+        { mode: "到廟預約", action: "選擇服務時段" },
+        { mode: "線上／到廟諮詢", action: "查看服務方式" },
+      ];
+
+      document.querySelectorAll(".card").forEach((card, index) => {
+        const detail = serviceDetails[index];
+        if (!detail) return;
+        const badge = document.createElement("span");
+        badge.className = "service-mode";
+        badge.textContent = detail.mode;
+        card.querySelector(".number")?.insertAdjacentElement("afterend", badge);
+        const link = document.createElement("a");
+        link.className = "service-link";
+        link.href = "#services";
+        link.textContent = detail.action;
+        card.append(link);
+      });
 
       if (canvas && hero && !reducedMotion.matches) {
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -160,7 +208,10 @@
         resize();
 
         const clock = new THREE.Clock();
+        let frameId;
+        let pageIsVisible = !document.hidden;
         const animate = () => {
+          if (!pageIsVisible) return;
           const t = clock.getElapsedTime();
           group.position.x += (1.25 + pointer.x * 0.22 - group.position.x) * 0.035;
           group.position.y += (-0.05 - pointer.y * 0.16 - group.position.y) * 0.035;
@@ -170,8 +221,16 @@
           outerRing.rotation.z = -t * 0.2;
           sparkles.rotation.z = t * 0.025;
           renderer.render(scene, camera);
-          requestAnimationFrame(animate);
+          frameId = requestAnimationFrame(animate);
         };
+        document.addEventListener("visibilitychange", () => {
+          pageIsVisible = !document.hidden;
+          if (pageIsVisible && !frameId) animate();
+          if (!pageIsVisible && frameId) {
+            cancelAnimationFrame(frameId);
+            frameId = undefined;
+          }
+        });
         animate();
       }
     </script>
